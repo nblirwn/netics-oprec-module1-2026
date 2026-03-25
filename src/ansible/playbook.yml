@@ -1,0 +1,53 @@
+---
+- name: Deploy and Configure Nginx
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check apt cache
+      apt:
+        update_cache: yes
+
+    - name: Check Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Create API dir
+      file:
+        path: /opt/php-api
+        state: directory
+        mode: '0755'
+
+    - name: Copy dependency to VPS
+      copy:
+        src: ../api/
+        dest: /opt/php-api/
+
+    - name: Remove existing container
+      shell: docker compose down
+      args:
+        chdir: /opt/php-api
+      ignore_errors: yes
+
+    - name: Run docker
+      shell: docker compose up -d --build
+      args:
+        chdir: /opt/php-api
+
+    - name: Deploy Nginx config
+      template:
+        src: templates/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify: Restart Nginx
+
+    - name: Check Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

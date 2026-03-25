@@ -1,0 +1,7 @@
+services:
+  php-api:
+    build: .
+    container_name: php_health_api
+    ports:
+      - "8080:8000"
+    restart: unless-stopped
