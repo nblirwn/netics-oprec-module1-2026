@@ -31,7 +31,7 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
 
   ![Exp 1](media/2.png)
 
-  Dir: `api/`
+  Dir: `src/api/`
 
   Pada poin 1 diminta untuk membuat endpoint /health yang memberikan response dengan content-type `application/json` dengan beberapa field. Di poin ini saya memutuskan untuk menggunakan bahasa pemrograman PHP. Untuk field `nama`, `nrp`, `status` bersifat static, sedangkan field `timestamp` dan `uptime` bersifat dynamic. Selain itu juga terdapat handler untuk mengatasi kondisi ketika client mengakses endpoint yang tidak ada pada server dengan memberikan response `Endpoint Not Found`.
 
@@ -56,7 +56,7 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
 
   ![Exp 2](media/4.png)
 
-  Dir: `api/`
+  Dir: `src/api/`
 
   Asumsinya VPS telah ter-install Docker. Pada poin 2 diminta untuk mengimplementasikan deployment pada VPS publik. Di sini yang digunakan adalah `router.php`, `Dockerfile`, dan `docker-compose.yml`. `Dockerfile` mengambil image linux yang sudah ter-install php8.2, kemudian melakukan setup hingga menyalakan server PHP dalam container pada port 8000. Kemudian `docker-compose.yml` read `Dockerfile` dan build image baru dengan memberi nama containernya php_health_api, setelah itu menyambungkan port container server PHP dengan port 8080 agar dapat diakses melalui \<ip-vps\>:8080. Dengan menggunakan `restart: unless-stopped`, seharusnya ketika server crash atau vps restart, `docker-compose.yml` akan otomatis menghidupkan container.
 
@@ -87,7 +87,7 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
 
   ![Exp 3](media/7.png)
 
-  Dir: `ansible/`
+  Dir: `src/ansible/`
 
   Pada poin 3 diminta untuk konfigurasi nginx menggunakan Ansible. Terdapat `inventory.ini` yang berfungsi untuk memetakan alamat IP VPS dan user yang digunakan oleh Ansible pada VPS, `playbook.yml` yang digunakan sebagai instruksi kerja "Deploy and Configure Nginx", mulai dari `Check apt cache` hingga `Deploy Nginx config` beserta handlernya, dan `templates/nginx.conf.j2` yang berisi konfigurasi Nginx. Sehingga ketika ada client yang mengakses server port 80, maka akan di-passing ke port 8080.
 
