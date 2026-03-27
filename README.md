@@ -36,6 +36,9 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
   Pada poin 1 diminta untuk membuat endpoint /health yang memberikan response dengan content-type `application/json` dengan beberapa field. Di poin ini saya memutuskan untuk menggunakan bahasa pemrograman PHP. Untuk field `nama`, `nrp`, `status` bersifat static, sedangkan field `timestamp` dan `uptime` bersifat dynamic. Selain itu juga terdapat handler untuk mengatasi kondisi ketika client mengakses endpoint yang tidak ada pada server dengan memberikan response `Endpoint Not Found`.
 
 - Reference
+  - http://stackoverflow.com/questions/20620300/http-content-type-header-and-json
+  - https://stackoverflow.com/questions/38907572/how-to-display-system-uptime-in-php
+  - https://gemini.google.com/share/3303a4dbb6aa
 
 <br>
 
@@ -64,6 +67,9 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
   Terdapat implementasi minimal untuk Security. Dengan menggunakan `RUN echo "expose_php = Off" > /usr/local/etc/php/conf.d/security.ini` pada `Dockerfile`, maka akan menghapus Response Header `X-Powered-By` yang umumnya ditandai oleh attacker untuk mengumpulkan informasi hingga melakukan penyerangan pada teknologi yang digunakan server.
 
 - Reference
+  - https://hub.docker.com/layers/library/php/8.2-cli
+  - https://gemini.google.com/share/3303a4dbb6aa
+  - https://stackoverflow.com/questions/9617579/turning-expose-php-off-in-php-ini
 
 <br>
 
@@ -96,6 +102,10 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
   Terdapat implementasi minimal untuk Security. Dengan menggunakan `server_tokens off;` pada `templates/nginx.conf.j2`, maka akan menyembunyikan versi Nginx yang umumnya ditandai oleh attacker untuk mengumpulkan informasi hingga melakukan penyerangan pada teknologi yang digunakan server.
 
 - Reference
+  - https://symfonycasts.com/screencast/ansible/nginx-conf-template
+  - https://pigsty.io/docs/setup/playbook/
+  - https://serverfault.com/questions/214242/can-i-hide-all-server-os-info
+  - https://gemini.google.com/share/3303a4dbb6aa
 
 <br>
 
@@ -134,3 +144,6 @@ Bahasa pemrograman dan teknologi yang digunakan dibebaskan kepada peserta.
   Terdapat implementasi minimal untuk Security. Pada CI/CD Pipeline terdapat `Run Trivy` yang melakukan scan ke seluruh filesystem. Jika ditemukan adanya vulnerability dengan severity CRITICAL atau HIGH dan sudah ada patch mengenai vulnerability tersebut, maka proses akan dihentikan. Namun jika tidak ditemukan, maka proses akan dilanjutkan hingga selesai. Hal ini merupakan implementasi sederhana untuk mencegah adanya vulnerability yang lolos ke production.
 
 - Reference
+  - https://gemini.google.com/share/3303a4dbb6aa
+  - https://github.com/aquasecurity/trivy
+  - https://stackoverflow.com/questions/60477061/github-actions-how-to-deploy-to-remote-server-using-ssh
